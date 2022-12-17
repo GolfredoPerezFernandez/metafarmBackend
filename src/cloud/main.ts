@@ -4,10 +4,6 @@ declare const Parse: any;
 import './generated/evmApi';
 import './generated/solApi';
 import { requestMessage } from '../auth/authService';
-import Moralis from 'moralis';
-
-const serverUrl = "https://metafarmlands.herokuapp.com/server";
-const appId = '001';
 
    
   
@@ -42,20 +38,6 @@ Parse.Cloud.define('getMarketItems', async () => {
     return { results }  
 
 });
-Parse.Cloud.define("getAllTokenIds", async ({params, user, ip}: any) => {
-  try {
-    const options = {
-      address: "0xe431308cE602Ff13d23e82e92a1fbE0DC2826Ab5",
-      chain:'0x61'
-      };
-      console.log("response2 ")
-        let response = await Moralis.EvmApi.nft.getContractNFTs( options );
-    // Not implemented, only excists to remove client-side errors when using the moralis-v1 package
-    
-    console.log("response "+response)
-    return {response};
-  } 
-)
 
 Parse.Cloud.define('getPluginSpecs', () => {
   // Not implemented, only excists to remove client-side errors when using the moralis-v1 package

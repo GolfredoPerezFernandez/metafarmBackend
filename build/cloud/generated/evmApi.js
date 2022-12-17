@@ -28,6 +28,20 @@ const beforeApiRequest = async (user, ip, name) => {
         throw new Error(`Too many requests to ${name} API from this particular client, the clients needs to wait before sending more requests.`);
     }
 };
+Parse.Cloud.define("getAllTokenIds", async ({ params, user, ip }) => {
+    try {
+        const options = {
+            address: "0xe431308cE602Ff13d23e82e92a1fbE0DC2826Ab5",
+            chain: '0x61'
+        };
+        let response = await moralis_1.default.EvmApi.nft.getContractNFTs(options);
+        console.log("response " + response);
+        return response;
+    }
+    catch (error) {
+        throw new Error(getErrorMessage(error, 'getAllTokenIds'));
+    }
+});
 Parse.Cloud.define("getBlock", async ({ params, user, ip }) => {
     try {
         await beforeApiRequest(user, ip, 'getBlock');

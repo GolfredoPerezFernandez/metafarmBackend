@@ -40,10 +40,9 @@ Parse.Cloud.define("getAllTokenIds", async ({params, user, ip}: any) => {
    };
 
     let response = await Moralis.EvmApi.nft.getContractNFTs( options );
-    // Not implemented, only excists to remove client-side errors when using the moralis-v1 package
-    
+   
     console.log("response "+response)
-    return {response};
+    return response;
   } catch (error) {
     throw new Error(getErrorMessage(error, 'getAllTokenIds'));
   }
